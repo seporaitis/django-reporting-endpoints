@@ -1,0 +1,9 @@
+*.egg-info/
+*.pyc
+*.sqlite3
+/.coverage
+/.coverage.*
+/.tox
+/build/
+/dist/
+/docs/_build/

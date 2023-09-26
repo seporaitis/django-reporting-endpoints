@@ -1,0 +1,47 @@
+{% load static %}
+<!-- MVP.css quickstart template: https://github.com/andybrewer/mvp/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="{% static 'mvp.css' %}">
+
+  <meta charset="utf-8">
+  <meta name="description" content="Example app">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My title</title>
+</head>
+
+<body>
+  <main>
+    <article>
+      <h2>Welcome to Example app</h2>
+      <p>This app is designed to show how to integrate
+        <code>django-reporting-endpoints</code> into your project.
+      </p>
+      <aside>
+        <p>You will not believe how easy it is!</p>
+      </aside>
+      <p>
+        This page is already set-up to trigger and report a CSP violation.
+        However, some browsers only send reports when the page is served via
+        HTTPS. You can use <a href="https://ngrok.com" target="_blank">Ngrok</a>, or similar, to create a https proxy
+        and open
+        the page via https. (e.g. `ngrok http 8000`).
+        <!-- this should trigger CSP violation. -->
+        <script src="//unpkg.com/alpinejs" defer></script>
+      </p>
+    </article>
+  </main>
+  <footer>
+    <hr>
+    <p>
+      <small>Read more in the <a href="https://django-reporting-endpoints.readthedocs.org/"
+          target="_blank">documentation</a>.</small>
+    </p>
+  </footer>
+</body>
+
+</html>

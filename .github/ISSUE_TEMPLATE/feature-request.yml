@@ -1,0 +1,14 @@
+name: Feature Request
+description: Request an enhancement or new feature.
+body:
+- type: textarea
+  id: description
+  attributes:
+    label: Description
+    description: |
+    Please describe your feature request with appropriate detail. Specifically:
+    * what is the current situation?
+    * why it is a problem?
+    * (if you know) how would you like it to be?
+  validations:
+    required: true
