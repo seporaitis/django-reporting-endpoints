@@ -2,16 +2,11 @@
 Changelog
 =========
 
-0.9.3 (2023-09-27)
--------------------
+0.9.1-0.9.4 (2023-09-27)
+------------------------
 
 * Improved test coverage.
-
-
-0.9.1, 0.9.2 (2023-09-27)
--------------------
-
-* README improvements.
+* Improved documentation.
 * Documentation build fix.
 
 0.9.0 (2023-09-27)
