@@ -24,7 +24,7 @@ def reporting_endpoint(
         "application/csp-report",
         "application/reports+json",
     ):
-        return HttpResponse("incorrect header", status=400)
+        return HttpResponse("incorrect content type", status=400)
 
     if "csp-report" in data:
         report = data["csp-report"]

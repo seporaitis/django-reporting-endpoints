@@ -10,6 +10,28 @@ from reporting_endpoints.models import Report
 pytestmark = pytest.mark.django_db
 
 
+def test_unparseable(client):
+    response = client.post(
+        "/_/csp-reports/",
+        data="YOLO",
+        content_type="application/csp-report",
+    )
+
+    assert response.status_code == 400
+    assert response.content.decode() == "could not parse"
+
+
+def test_incorrect_content_type(client):
+    response = client.post(
+        "/_/csp-reports/",
+        data="null",
+        content_type="application/text",
+    )
+
+    assert response.status_code == 400
+    assert response.content.decode() == "incorrect content type"
+
+
 def test_csp_report(client):
     data = {
         "document-uri": "https://example.com",
@@ -27,7 +49,6 @@ def test_csp_report(client):
         content_type="application/csp-report",
     )
 
-    print(response.content)
     assert response.status_code == 201
 
     report = Report.objects.get()
@@ -68,7 +89,7 @@ def test_single_report(client):
     response = client.post(
         "/_/csp-reports/",
         data=json.dumps(data),
-        content_type="application/csp-report",
+        content_type="application/reports+json",
     )
 
     assert response.status_code == 201
@@ -111,7 +132,7 @@ def test_multiple_reports(client):
     response = client.post(
         "/_/csp-reports/",
         data=json.dumps([data, data, data]),
-        content_type="application/csp-report",
+        content_type="application/reports+json",
     )
 
     assert response.status_code == 201

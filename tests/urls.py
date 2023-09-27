@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
 
@@ -15,4 +16,5 @@ urlpatterns = [
     path(
         "_/csp-reports/", reporting_endpoint, kwargs={"endpoint_name": "csp-violations"}
     ),
+    path("admin/", admin.site.urls),
 ]

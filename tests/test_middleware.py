@@ -35,6 +35,20 @@ def test_report_to_endpoints_string(settings, client):
 
 
 def test_report_to_endpoints_dict(settings, client):
+    settings.REPORT_TO_ENDPOINTS = {
+        "group": "endpoint1",
+        "max_age": 10886400,
+        "endpoints": [{"url": "/_/csp-reports/"}],
+    }
+    response = client.get("/")
+    assert "reporting-endpoints" not in response.headers
+    assert (
+        response.headers["report-to"]
+        == '{"group": "endpoint1", "max_age": 10886400, "endpoints": [{"url": "/_/csp-reports/"}]}'  # noqa: E501
+    )
+
+
+def test_report_to_endpoints_list(settings, client):
     settings.REPORT_TO_ENDPOINTS = [
         {
             "group": "endpoint1",
