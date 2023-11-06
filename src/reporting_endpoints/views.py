@@ -28,6 +28,11 @@ def reporting_endpoint(
 
     if "csp-report" in data:
         report = data["csp-report"]
+        disposition = Report.Disposition.UNKNOWN
+        if report.get("disposition") == "enforce":
+            disposition = Report.Disposition.ENFORCE
+        elif report.get("disposition") == "report":
+            disposition = Report.Disposition.REPORT
         Report.objects.create(
             endpoint_name=endpoint_name,
             document_uri=report["document-uri"],
@@ -35,9 +40,7 @@ def reporting_endpoint(
             violated_directive=report["violated-directive"],
             effective_directive=report["effective-directive"],
             original_policy=report["original-policy"],
-            disposition=Report.Disposition.ENFORCE
-            if report["disposition"] == "enforce"
-            else Report.Disposition.REPORT,
+            disposition=disposition,
             blocked_uri=report["blocked-uri"],
             status_code=report["status-code"],
             sample=report.get("script-sample") or report.get("sample") or "",
