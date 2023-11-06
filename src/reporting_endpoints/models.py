@@ -7,6 +7,7 @@ class Report(models.Model):
     class Disposition(models.TextChoices):
         ENFORCE = "enforce"
         REPORT = "report"
+        UNKNOWN = "unknown"
 
     created_at = models.DateTimeField(auto_now_add=True)
     endpoint_name = models.CharField(max_length=1024, null=True, blank=True)
